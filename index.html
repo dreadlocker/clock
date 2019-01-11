@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>JS Clock</title>
+</head>
+
+<body>
+  <div id="wrapper">
+    <div id="clock">
+      <div id="hours"></div>
+      <div id="minutes"></div>
+      <div id="seconds"></div>
+      <div id="one">1</div>
+      <div id="two">2</div>
+      <div id="three">3</div>
+      <div id="four">4</div>
+      <div id="five">5</div>
+      <div id="six">6</div>
+      <div id="seven">7</div>
+      <div id="eight">8</div>
+      <div id="nine">9</div>
+      <div id="ten">10</div>
+      <div id="eleven">11</div>
+      <div id="twelve">12</div>
+    </div>
+  </div>
+
+  <script>
+    const secondsArrow = document.getElementById('seconds');
+    const minutesArrow = document.getElementById('minutes');
+    const hoursArrow = document.getElementById('hours');
+
+    function setDate() {
+      const now = new Date();
+
+      // manage seconds
+      const seconds = now.getSeconds() + 1;
+      const secondsDegree = (seconds * (360 / 60)) + 90; // 360 is total degrees, 60 is total seconds, 90 is to make the arrow starts at 12 o'clock(default starts at 9 o'clock)
+      secondsArrow.style.transform = `rotate(${secondsDegree}deg)`;
+
+      // manage minutes
+      const minutes = now.getMinutes();
+      const minutesDegree = (minutes * (360 / 60)) + 90;
+      minutesArrow.style.transform = `rotate(${minutesDegree}deg)`;
+
+      // manage hours
+      const hours = now.getHours() - 12;
+      const hoursDegree = (hours * (360 / 12)) + 90;
+      hoursArrow.style.transform = `rotate(${hoursDegree}deg)`;
+    }
+
+    setDate();
+    setInterval(setDate, 1000);
+  </script>
+
+  <style>
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: #BADA55;
+    }
+
+    #wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+    }
+
+    #clock {
+      display: flex;
+      position: relative;
+      width: 15em;
+      height: 15em;
+      border: 10px solid white;
+      border-radius: 50%;
+    }
+
+    #seconds,
+    #minutes,
+    #hours {
+      width: 47%;
+      height: 3%;
+      margin-left: 3%;
+      position: absolute;
+      top: 50%;
+      transform-origin: 100%;
+      /*pin the right end of the arrow so it can rotate properly*/
+      z-index: 1;
+    }
+
+    #seconds {
+      background-color: red;
+    }
+
+    #minutes {
+      background-color: green;
+    }
+
+    #hours {
+      background-color: white;
+    }
+
+    #one,
+    #two,
+    #three,
+    #four,
+    #five,
+    #six,
+    #seven,
+    #eight,
+    #nine,
+    #ten,
+    #eleven,
+    #twelve {
+      position: absolute;
+      font-size: 2em;
+    }
+
+    #one {
+      top: 5%;
+      left: 69%;
+    }
+
+    #two {
+      top: 21%;
+      left: 85%;
+    }
+
+    #three {
+      top: 44%;
+      left: 92%;
+    }
+
+    #four {
+      top: 65%;
+      left: 84%;
+    }
+
+    #five {
+      top: 81%;
+      left: 68%;
+    }
+
+    #six {
+      top: 86%;
+      left: 47%;
+    }
+
+    #seven {
+      top: 81%;
+      left: 26%;
+    }
+
+    #eight {
+      top: 66%;
+      left: 10%;
+    }
+
+    #nine {
+      top: 44%;
+      left: 3%;
+    }
+
+    #ten {
+      top: 23%;
+      left: 7%;
+    }
+
+    #eleven {
+      top: 7%;
+      left: 22%;
+    }
+
+    #twelve {
+      left: 44%;
+    }
+  </style>
+</body>
+
+</html>
