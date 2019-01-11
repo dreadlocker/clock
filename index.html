@@ -26,6 +26,7 @@
       <div id="ten">10</div>
       <div id="eleven">11</div>
       <div id="twelve">12</div>
+      <div id="AMorPM"></div>
     </div>
   </div>
 
@@ -33,6 +34,8 @@
     const secondsArrow = document.getElementById('seconds');
     const minutesArrow = document.getElementById('minutes');
     const hoursArrow = document.getElementById('hours');
+    const AMorPMinput = document.getElementById('AMorPM');
+    let AMorPM = '';
 
     function setDate() {
       const now = new Date();
@@ -48,9 +51,11 @@
       minutesArrow.style.transform = `rotate(${minutesDegree}deg)`;
 
       // manage hours
-      const hours = now.getHours() - 12;
-      const hoursDegree = (hours * (360 / 12)) + 90;
+      const hours = now.getHours(); // 24 hours
+      const hoursDegree = ((hours - 12) * (360 / 12)) + 90;
       hoursArrow.style.transform = `rotate(${hoursDegree}deg)`;
+
+      AMorPMinput.innerHTML = (hours >= 12) ? AMorPM = 'PM' : AMorPM = 'AM';
     }
 
     setDate();
@@ -181,6 +186,17 @@
 
     #twelve {
       left: 44%;
+    }
+
+    #AMorPM {
+      position: absolute;
+      top: 47.5%;
+      left: 78%;
+      width: 12%;
+      height: 8%;
+      background-color: white;
+      text-align: center;
+      font-size: 1.1em;
     }
   </style>
 </body>
